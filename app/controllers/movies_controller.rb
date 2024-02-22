@@ -3,7 +3,11 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    if params[:descending] = 1
+      @movies = Movie.all.desc(params[:column])
+    else
+     @movies = Movie.all.asc(params[:column])
+    end
   end
 
   # GET /movies/1 or /movies/1.json

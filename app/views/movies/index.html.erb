@@ -2,13 +2,39 @@
 
 <h1>Movies</h1>
 
+
+<%= form_with url: movies_url, method: :get do |form| %>
+  <%= radio_button_tag(:column, "title") %>
+  <%= label_tag(:column, "title") %>
+  <%= radio_button_tag(:column, "rating") %>
+  <%= label_tag(:column, "rating") %>
+  <%= radio_button_tag(:column, "release_date") %>
+  <%= label_tag(:column, "release_date") %>
+  <%= check_box_tag(:descending) %>
+  <%= label_tag(:descending, "descending") %>
+  <%= form.submit "Change order" %>
+<% end %>
+
 <div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
+  <table> 
+    <thead>
+      <th><%= link_to "Title", :sort => "title"%> </th>
+      <th><%= link_to "Rating", :sort => "rating"%></th>
+      <th><%= link_to "Release", :sort => "release_date"%></th>
+    </thead>
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <td><%=movie.title%></td>
+          <td><%=movie.rating%></td>
+          <td><%=movie.release_date.to_date%></td>
+          <td><%=movie.description%></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfooter>
+    </tfooter>
+  </table>
+  
 </div>
 
-<%= link_to "New movie", new_movie_path %>
