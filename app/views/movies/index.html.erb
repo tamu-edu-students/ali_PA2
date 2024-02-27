@@ -1,7 +1,15 @@
+<style>
+  .sorted{
+    background: yellow;
+  }
+  .hide{
+    display: none;
+  }
+</style>
 <p style="color: green"><%= notice %></p>
-
+<div style="padding-left: 500px">
+<div style="text-align: center; background: #fadadd; max-width: 50%">
 <h1>Movies</h1>
-
 
 <%= form_with url: movies_url, method: :get do |form| %>
   <%= radio_button_tag(:column, "title") %>
@@ -22,17 +30,25 @@
 <div id="movies">
   <table> 
     <thead>
-      <th> Title </th>
-      <th> Rating</th>
-      <th> Release</th>
+      <th> Title 
+        <span class="<%= 'hide' unless params[:column]== 'title' && params[:sortby]!= 'desc' %>">&#8593;</span> 
+        <span class="<%= 'hide' unless params[:column]== 'title' && params[:sortby]== 'desc' %>">&#8595;</span> 
+      </th>
+      <th> Rating 
+        <span class="<%= 'hide' unless params[:column]== 'rating' && params[:sortby]!= 'desc' %>">&#8593;</span> 
+        <span class="<%= 'hide' unless params[:column]== 'rating' && params[:sortby]== 'desc' %>">&#8595;</span> 
+      </th>
+      <th> Release 
+        <span class="<%= 'hide' unless params[:column]== 'release_date' && params[:sortby]!= 'desc' %>">&#8593;</span> 
+        <span class="<%= 'hide' unless params[:column]== 'release_date' && params[:sortby]== 'desc' %>">&#8595;</span> 
+      </th>
     </thead>
     <tbody>
       <% @movies.each do |movie| %>
         <tr>
-          <td><%=movie.title%></td>
-          <td><%=movie.rating%></td>
-          <td><%=movie.release_date.to_date%></td>
-          <td><%=movie.description%></td>
+          <td class="<%= 'sorted' if params[:column]== 'title' %>"><%= link_to movie.title, movie %></td>
+          <td class="<%= 'sorted' if params[:column]== 'rating' %>"><%=movie.rating%></td>
+          <td class="<%= 'sorted' if params[:column]== 'release_date' %>"><%=movie.release_date.to_date%></td>
         </tr>
       <% end %>
     </tbody>
@@ -40,5 +56,12 @@
     </tfooter>
   </table>
   
+  <button>
+    <%= link_to "New movie", new_movie_path %>
+  </button>
 </div>
+</div>
+</div>
+
+
 

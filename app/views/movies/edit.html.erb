@@ -1,10 +1,15 @@
-<h1>Editing movie</h1>
+<div style="padding-left: 500px">
+  <div style="text-align: center; background: #ffb6c1; max-width: 50%">
+    <h1>Editing movie</h1>
 
-<%= render "form", movie: @movie %>
+    <%= render "form", movie: @movie %>
 
-<br>
+    <br>
 
-<div>
-  <%= link_to "Show this movie", @movie %> |
-  <%= link_to "Back to movies", movies_path %>
+    <div>
+      <%= link_to "Show this movie", @movie %> |
+      <%= link_to "Back to movies", movies_path %>
+    </div>
+  </div>
 </div>
+

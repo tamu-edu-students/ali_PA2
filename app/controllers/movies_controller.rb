@@ -6,7 +6,6 @@ class MoviesController < ApplicationController
     if params.has_key?(:column)
       if params.has_key?(:sortby)
         @movies= Movie.all.sortmovies(params[:column], params[:sortby].upcase)
-        # @movies = Movie.all.order("#{params[:column]} DESC")
       else
         @movies= Movie.all.sortmovies(params[:column], "asc")
       end

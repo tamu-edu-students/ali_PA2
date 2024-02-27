@@ -1,10 +1,16 @@
 <p style="color: green"><%= notice %></p>
+<div style="padding-left: 500px">
+  <div style="text-align: center; background: #ffb6c1; max-width: 50%">
+    <h2><%= @movie.title %> </h2>
+    <h3>Rotten Potatoes Rating: <%= @movie.rating %> </h3>
+    <h3>Release Date: <%= @movie.release_date.to_date %> </h3>
 
-<%= render @movie %>
+    </div>
 
-<div>
-  <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path %>
+  <div style="background:  #ADD8E6; max-width: 50%">
+    <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
+    <%= link_to "Back to movies", movies_path %>
 
-  <%= button_to "Destroy this movie", @movie, method: :delete %>
+    <%= button_to "Destroy this movie", @movie, method: :delete %>
+  </div>
 </div>
