@@ -3,11 +3,17 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    if params[:descending] = 1
-      @movies = Movie.all.desc(params[:column])
+    if params.has_key?(:column)
+      if params.has_key?(:sortby)
+        @movies= Movie.all.sortmovies(params[:column], params[:sortby].upcase)
+        # @movies = Movie.all.order("#{params[:column]} DESC")
+      else
+        @movies= Movie.all.sortmovies(params[:column], "asc")
+      end
     else
-     @movies = Movie.all.asc(params[:column])
+      @movies = Movie.all
     end
+    
   end
 
   # GET /movies/1 or /movies/1.json

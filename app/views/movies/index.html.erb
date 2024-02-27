@@ -10,17 +10,21 @@
   <%= label_tag(:column, "rating") %>
   <%= radio_button_tag(:column, "release_date") %>
   <%= label_tag(:column, "release_date") %>
-  <%= check_box_tag(:descending) %>
-  <%= label_tag(:descending, "descending") %>
+
+  <%= radio_button_tag(:sortby, "asc") %>
+  <%= label_tag(:sortby, "asc") %>
+  <%= radio_button_tag(:sortby, "desc") %>
+  <%= label_tag(:sortby, "desc") %>
+ 
   <%= form.submit "Change order" %>
 <% end %>
 
 <div id="movies">
   <table> 
     <thead>
-      <th><%= link_to "Title", :sort => "title"%> </th>
-      <th><%= link_to "Rating", :sort => "rating"%></th>
-      <th><%= link_to "Release", :sort => "release_date"%></th>
+      <th> Title </th>
+      <th> Rating</th>
+      <th> Release</th>
     </thead>
     <tbody>
       <% @movies.each do |movie| %>
